@@ -5,15 +5,14 @@ importScripts("https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js");
 
 // Your Firebase configuration
 var firebaseConfig = {
-    apiKey: "RandomAPIKey",
-    authDomain: "random-86215.firebaseapp.com",
-    databaseURL: "https://random.firebaseio.com",
-    projectId: "random-86215",
-    storageBucket: "random-86215.appspot.com",
-    messagingSenderId: "8888888",
-    appId: "some::id",
-    measurementId: "G-SOMEID"
-}
+    apiKey: "AIzaSyAZKo6gXSgRap0IO4U3pW-GdrcrCbHXCCo",
+    authDomain: "note-sharing-a4a97.firebaseapp.com",
+    databaseURL: "https://note-sharing-a4a97.firebaseio.com",
+    projectId: "note-sharing-a4a97",
+    storageBucket: "note-sharing-a4a97.appspot.com",
+    messagingSenderId: "239984955457",
+    appId: "1:239984955457:web:20d1a1e747270f26bcb6c0"
+  };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
