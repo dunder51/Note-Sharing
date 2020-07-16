@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import logo from './logo.svg';
 import './App.css';
 
 function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <NoteForm />
+                Upload a Note
             </header>
+            <body className="App-main">
+                <div className="App-form">
+                    <NoteForm />
+                </div>
+            </body>
         </div>
     );
 }
@@ -47,29 +51,35 @@ class NoteForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Note:
-                    <input type="file" />
+                    <input type="file"
+                        id="note" name="note"
+                        accept="image/png, image/jpeg, image/pdf"/>
                 </label>
-
+                <br />
                 <label>
                     Topic:
+                    <br />
                     <input type="text" value={this.state.topic} onChange={this.handleChange} />
                 </label>
-
+                <br />
                 <label>
                     Description:
+                    <br />
                     <input type="text" value={this.state.description} onChange={this.handleChange} />
                 </label>
-
+                <br />
                 <label>
                     College Name:
+                    <br />
                     <input type="text" value={this.state.college} onChange={this.handleChange} />
                 </label>
-
+                <br />
                 <label>
                     Course Name:
+                    <br />
                     <input type="text" value={this.state.course} onChange={this.handleChange} />
                 </label>
-        
+                <br />
                 <input type="submit" value="Submit" />
             </form>
         );
