@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#api key
+src/config/note-sharing-a4a97-0f946f24ee55.json
