@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-// import { db } from './init-firebase.js'
+import { db } from './init-firebase.js'
 
 function App() {
     return (
@@ -47,7 +47,24 @@ class NoteForm extends React.Component {
 
     handleSubmit(event) {
         alert('A form was submitted: ' + this.state.topic);
+        this.addData();
         event.preventDefault();
+    }
+
+    addData() {
+        db.collection("cities").doc("LA").set({
+            name: "Los Angeles",
+            state: "CA",
+            country: "USA"
+        })
+            .then(function () {
+                console.log("Document successfully written!");
+                alert("Document successfully written!");
+            })
+            .catch(function (error) {
+                console.error("Error writing document: ", error);
+                alert("Error writing document: ", error);
+            });
     }
 
     render() {
