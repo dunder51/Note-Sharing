@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
+// import { db } from './init-firebase.js'
 
 function App() {
     return (
@@ -8,11 +9,11 @@ function App() {
             <header className="App-header">
                 Upload a Note
             </header>
-            <body className="App-main">
+            <div className="App-main">
                 <div className="App-form">
                     <NoteForm />
                 </div>
-            </body>
+            </div>
         </div>
     );
 }
@@ -25,20 +26,23 @@ class NoteForm extends React.Component {
             description: '',
             college: '',
             course: '',
-            file: '' };
+            file: '' 
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    
     handleChange(event) {
+        const target = event.target;
+
+        let name = target.name;
+        let value = target.value;
+
         this.setState({ 
-            topic: event.target.topic,
-            description: event.target.description,
-            college: event.target.colege,
-            course: event.target.course,
-            file: event.target.file
+            [name]: value
         });
+        //console.log(this.state);
     }
 
     handleSubmit(event) {
@@ -59,25 +63,25 @@ class NoteForm extends React.Component {
                 <label>
                     Topic:
                     <br />
-                    <input type="text" value={this.state.topic} onChange={this.handleChange} />
+                    <input type="text" name='topic' onChange={this.handleChange} />
                 </label>
                 <br />
                 <label>
                     Description:
                     <br />
-                    <input type="text" value={this.state.description} onChange={this.handleChange} />
+                    <input type="text" name='description' onChange={this.handleChange} />
                 </label>
                 <br />
                 <label>
                     College Name:
                     <br />
-                    <input type="text" value={this.state.college} onChange={this.handleChange} />
+                    <input type="text" name='college' onChange={this.handleChange} />
                 </label>
                 <br />
                 <label>
                     Course Name:
                     <br />
-                    <input type="text" value={this.state.course} onChange={this.handleChange} />
+                    <input type="text" name='course' onChange={this.handleChange} />
                 </label>
                 <br />
                 <input type="submit" value="Submit" />
