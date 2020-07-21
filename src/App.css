@@ -30,6 +30,6 @@
   justify-content: center;
   display: inline-block;
   text-align: center;
-  font-size: calc(1px + 2vmin);
+  font-size: calc(5px + 2vmin);
   color: white;
 }
