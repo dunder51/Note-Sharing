@@ -26,7 +26,7 @@ class NoteForm extends React.Component {
             description: '',
             college: '',
             course: '',
-            file: '' 
+            note: null 
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -52,11 +52,9 @@ class NoteForm extends React.Component {
     }
 
     addData() {
-        db.collection("cities").doc("LA").set({
-            name: "Los Angeles",
-            state: "CA",
-            country: "USA"
-        })
+        db.collection("Notes").doc(this.state.topic).set(
+            this.state
+        )
             .then(function () {
                 console.log("Document successfully written!");
                 alert("Document successfully written!");
