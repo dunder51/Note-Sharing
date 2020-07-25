@@ -10,9 +10,18 @@ function App() {
             <header className="App-header">
                 Upload a Note
             </header>
-            <div className="App-main">
+            <div className="content">
                 <div className="App-form">
                     <NoteForm />
+                </div>
+            </div>
+            <div className="sidenav-heading">
+                Note Selection
+                <div className="sidenav">
+                    <NoteList />
+                    <a href="#">Link</a>
+                    <a href="#">Link</a>
+                    <a href="#">Link</a>
                 </div>
             </div>
         </div>
@@ -36,7 +45,9 @@ class NoteForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.uploadNote = this.uploadNote.bind(this);
 
-        this.preview = React.createRef();
+        //this.preview = React.createRef();
+        this.preview = document.getElementById('preview');
+        console.log(this.preview);
 
         this.fileTypes = [
             'image/apng',
@@ -61,7 +72,7 @@ class NoteForm extends React.Component {
         this.setState({
             [name]: value
         });
-        console.log(this.notes);
+        this.getDocuments();
     }
 
     handleSubmit(event) {
@@ -89,6 +100,7 @@ class NoteForm extends React.Component {
         const files = event.target.files;
         console.log('File:', files);
         this.notes = files;
+        //this.updateImageDisplay();
     }
 
     addData() {
@@ -115,6 +127,40 @@ class NoteForm extends React.Component {
         });
     }
 
+    updateImageDisplay() {
+        while (this.preview.firstChild) {
+            this.preview.removeChild(this.preview.firstChild);
+        }
+
+        const curFiles = this.notes;
+        if (curFiles.length === 0) {
+            const para = document.createElement('p');
+            para.textContent = 'No files currently selected for upload';
+            this.preview.appendChild(para);
+        } else {
+            const list = document.createElement('ol');
+            this.preview.appendChild(list);
+
+            for (const file of curFiles) {
+                const listItem = document.createElement('li');
+                const para = document.createElement('p');
+
+                if (this.validFileType(file)) {
+                    para.textContent = `File name ${file.name}, file size ${this.returnFileSize(file.size)}.`;
+                    const image = document.createElement('img');
+                    image.src = URL.createObjectURL(file);
+
+                    listItem.appendChild(image);
+                    listItem.appendChild(para);
+                } else {
+                    para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+                    listItem.appendChild(para);
+                }
+
+                list.appendChild(listItem);
+            }
+        }
+    }
 
     validFileType(file) {
         return this.fileTypes.includes(file.type);
@@ -178,9 +224,46 @@ class NoteForm extends React.Component {
     }
 }
 
+class NoteList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: [], Link: '' };
+    }
+
+    getDocuments() {
+        console.log("getDocuments");
+        const getNotes = async () => {
+            const notesRef = db.collection('Notes');
+            const snapshot = await notesRef.get();
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+            });
+            console.log("done getNotes");
+        }
+        getNotes();
+        console.log("done getDocuments");
+    }
+    
+    render() {
+        return (
+            <ul>
+                <script>this.getDocuments()</script>
+                {/* {this.props.items.map(item => (
+                    <li key={item.id}>{item.text}</li>
+                ))} */}
+            </ul>
+        );
+    }
+}
+
 ReactDOM.render(
     <NoteForm />,
     document.getElementById('root')
 );
+
+ReactDOM.render(
+    <NoteList />,
+    document.getElementById('root')
+)
 
 export default App;

@@ -3,6 +3,8 @@
 }
 
 .App-header {
+  margin-left: 30vh;
+  padding-left: 2vh;
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
@@ -14,6 +16,8 @@
 }
 
 .App-main {
+  margin-left: 30vh;
+  padding-left: 2vh;
   background-color: #282c40;
   min-height: 100vh;
   display: flex;
@@ -30,7 +34,7 @@
   justify-content: center;
   display: inline-block;
   text-align: center;
-  font-size: calc(5px + 2vmin);
+  font-size: calc(1px + 2vmin);
   color: white;
 }
 
@@ -42,9 +46,9 @@
       background: #282c34;
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 2vh;
       list-style-type: none;
-      border: 1px solid white;
+      border: .3vh solid white;
     }
 
 .form img {
@@ -53,25 +57,86 @@
     }
 
 .form p {
-      line-height: 32px;
-      padding-left: 10px;
+      line-height: 3vh;
+      padding-left: 2vh;
     }
 
 .form label, form submit {
       background-color: #7F9CCB;
-      padding: 5px 10px;
-      border-radius: 5px;
-      border: 1px ridge black;
+      padding: 1vh 2vh;
+      border-radius: 1vh;
+      border: 1vh ridge black;
       font-size: 0.8rem;
       height: auto;
     }
 
-/* .form label:hover, form button:hover {
+.form label:hover, form submit:hover {
       background-color: #2D5BA3;
       color: white;
-    } */
+    }
 
-.form label:active, form button:active {
+.form label:active, form submit:active {
       background-color: #0D3F8F;
       color: white;
     }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the side navigation */
+.sidenav {
+  margin-top: 10vh;
+  height: 100%;
+  width: 30vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #282c34;
+  overflow-x: hidden;
+  font-size: calc(1px + 2vmin);
+}
+
+.sidenav-heading {
+  width: 30vh;
+  height: 10vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: white;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+  color: white;
+  padding: 2vh;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the content */
+.content {
+  margin-left: 30vh;
+  padding-left: 2vh;
+  background-color: #282c40
+}
