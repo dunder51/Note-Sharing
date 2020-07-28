@@ -1,0 +1,51 @@
+/* Style the side navigation */
+.sidenav {
+  margin-top: 10vh;
+  height: 100%;
+  width: 30vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #282c34;
+  overflow-x: hidden;
+  font-size: calc(1px + 2vmin);
+}
+
+.sidenav-heading {
+  width: 30vh;
+  height: 10vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: white;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+  color: white;
+  padding: 2vh;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the content */
+.content {
+  margin-left: 30vh;
+  padding-left: 2vh;
+  background-color: #282c40
+}

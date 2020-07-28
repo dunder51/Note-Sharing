@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+// import './index.css';
+// import NoteList from "./component/NoteList";
+// import NoteForm from "./component/NoteForm";
 import * as serviceWorker from './serviceWorker';
+
+function App() {
+    return (
+        <div className="App">
+            Test
+            {/* <NoteForm /> */}
+            {/* <NoteList /> */}
+        </div>
+    );
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+        <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
