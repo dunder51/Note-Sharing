@@ -7,8 +7,7 @@ import { db } from '../init-firebase.js'
 class NoteList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { items: [], Link: '' };
-        this.myRef = React.createRef();
+        this.state = { notes: [] };
     }
 
     componentDidMount() {
@@ -17,29 +16,41 @@ class NoteList extends React.Component {
 
     getDocuments() {
         console.log("getDocuments");
-        const getNotes = async () => {
-            const notesRef = db.collection('Notes');
-            const snapshot = await notesRef.get();
-            snapshot.forEach(doc => {
-                console.log(doc.id, '=>', doc.data());
+        // const getNotes = async () => {
+        //     const notesRef = db.collection('Notes');
+        //     const snapshot = await notesRef.get();
+        //     snapshot.forEach(doc => {
+        //         console.log(doc.id, '=>', doc.data());
+        //     });
+        //     console.log("done getNotes");
+        // }
+        // getNotes();
+
+        db.collection("Notes")
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                console.log(data);
+                this.setState({ notes: data });
             });
-            console.log("done getNotes");
-        }
-        getNotes();
+
         console.log("done getDocuments");
     }
     
     render() {
+        const { notes } = this.state;
+        console.log(notes);
         return (
             <div className="sidenav-heading">
                 Note Selection
                 <div id="sidenav" className="sidenav">
-                    <ul className="noteList">
-                        <NoteList />
-                        <a href="#">Link</a>
-                        <a href="#">Link</a>
-                        <a href="#">Link</a>
-                    </ul>
+                    <div className="noteList">
+                        {notes.map(note => (
+                            <div key={note.uid} className="col-lg-6 col-md-6 col-s-12 mb-4">
+                                <a target="_blank" rel="noopener noreferrer" href = {note.notes}>{note.topic}</a>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         );

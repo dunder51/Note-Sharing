@@ -16,6 +16,7 @@ class NoteForm extends React.Component {
         };
 
         this.notes = null;
+        this.uid = null;
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,22 +52,15 @@ class NoteForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.topic !== '') {
+        if (this.state.topic !== '' && this.notes != null) {
             this.addData();
-            alert('A form was submitted: ' + this.state.topic);
-
             for (const file of this.notes) {
-                if (file != null) {
-                    this.addFile(file);
-                    alert('A note was submitted:' + file.name);
-                }
-                else {
-                    alert('No Note');
-                }
+                this.addFile(file);
+                alert('A note was submitted:\nTopic: ' + this.state.topic + "\nFile Name: " + file.name );
             }
         }
         else {
-            alert('No Topic');
+            alert('No Topic or No Note');
         }
     }
 
@@ -78,9 +72,13 @@ class NoteForm extends React.Component {
     }
 
     addData() {
-        db.collection("Notes").doc(this.state.topic).set(
-            this.state
-        )
+        this.uid = new Date().getTime()
+        const data = {
+            ...this.state,
+            uid: this.uid
+        };
+
+        db.collection("Notes").doc(data.uid.toString()).set(data)
             .then(function () {
                 console.log("Document successfully written!");
             })
@@ -102,6 +100,8 @@ class NoteForm extends React.Component {
         var noteCollege = this.state.college;
         var noteCourse = this.state.course;
         var noteDescription = this.state.description;
+        
+        var uid = this.uid;
 
         storageRef.child('notes/' + file.name).getDownloadURL().then(function (url) {
 
@@ -115,7 +115,7 @@ class NoteForm extends React.Component {
 
             console.log(data);
 
-            const res = db.collection('Notes').doc(noteTopic).set(data);
+            db.collection('Notes').doc(uid.toString()).set(data);
         })
 
 
