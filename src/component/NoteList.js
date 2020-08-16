@@ -41,13 +41,15 @@ class NoteList extends React.Component {
         const { notes } = this.state;
         console.log(notes);
         return (
-            <div className="sidenav-heading">
-                Note Selection
-                <div id="sidenav" className="sidenav">
+            <div className="App">
+                <div className="App-header">
+                    <button className="button" onClick={this.getDocuments()}>Notes</button>
+                </div>
+                <div id="App-main" className="App-main">
                     <div className="noteList">
                         {notes.map(note => (
                             <div key={note.uid} className="col-lg-6 col-md-6 col-s-12 mb-4">
-                                <a target="_blank" rel="noopener noreferrer" href = {note.notes}>{note.topic}</a>
+                                <a target="_blank" rel="noopener noreferrer" href={note.notes}>{note.topic}</a>
                             </div>
                         ))}
                     </div>

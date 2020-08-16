@@ -175,7 +175,7 @@ class NoteForm extends React.Component {
 
     render() {
         return (
-            <>
+            <div className="App">
             <header className="App-header">Upload a Note</header>
             <div className="content">
                 <div className="App-form">
@@ -229,7 +229,7 @@ class NoteForm extends React.Component {
                     </form>
                 </div>
             </div>
-            </>
+            </div>
         );
     }
 }

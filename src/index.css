@@ -1,3 +1,65 @@
 .App {
+  background-color: #282c40;
+}
+
+/* Style the side navigation */
+.sidenav {
+  margin-top: 5vh;
+  height: 100%;
+  width: 20vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #cccccc;
+  overflow-x: hidden;
+  font-size: calc(1px + 2vmin);
+}
+
+.sidenav-heading {
+  width: 20vh;
+  height: 5vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #adabab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: black;
+}
+
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
   text-align: center;
+}
+
+/* Side navigation links */
+.sidenav a {
+  color: black;
+  padding: 1vh;
+  text-decoration: none;
+  display: block;
+  align-items: center;
+  justify-content: center
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: #979daa;
+  color: black;
+  align-items: center;
+  justify-content: center
+}
+
+/* Style the content */
+.content {
+  margin-left: 30vh;
+  padding-left: 2vh;
+  background-color: #282c40
 }
